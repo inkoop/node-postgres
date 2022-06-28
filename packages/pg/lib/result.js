@@ -51,9 +51,9 @@ class Result {
     for (var i = 0, len = rowData.length; i < len; i++) {
       var rawValue = rowData[i]
       if (rawValue !== null) {
-        row[i] = this._parsers[i](rawValue)
+        row[`${this.fields[i].tableID}.${field}`] = this._parsers[i](rawValue)
       } else {
-        row[i] = null
+        row[`${this.fields[i].tableID}.${field}`] = null
       }
     }
     return row
