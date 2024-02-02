@@ -61,14 +61,14 @@ class Result {
   }
 
   parseRow(rowData) {
-    var row = { ...this._prebuiltEmptyResultObject }
+    var row = {}
     for (var i = 0, len = rowData.length; i < len; i++) {
       var rawValue = rowData[i]
       var field = this.fields[i].name
       if (rawValue !== null) {
-        row[field] = this._parsers[i](rawValue)
+        row[`${this.fields[i].tableID}.${field}`] = this._parsers[i](rawValue)
       } else {
-        row[field] = null
+        row[`${this.fields[i].tableID}.${field}`] = null
       }
     }
     return row
